@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<suite name="SauceDemo Automation Suite">
+
+    <listeners>
+
+    <listener class-name="com.saucedemo.tests.ExtentReportListener"/>
+
+</listeners>
+    <test name="SauceDemo Tests">
+
+        <classes>
+
+            <class name="com.saucedemo.tests.LoginTest"/>
+
+            <class name="com.saucedemo.tests.NegativeLoginTest"/>
+
+            <class name="com.saucedemo.tests.InventoryTest"/>
+
+            <class name="com.saucedemo.tests.CartTest"/>
+
+            <class name="com.saucedemo.tests.CheckoutTest"/>
+
+            <class name="com.saucedemo.tests.CompleteCheckoutTest"/>
+
+            <class name="com.saucedemo.tests.CartRemoveTest"/>
+
+            <class name="com.saucedemo.tests.InventorySortTest"/>
+
+        </classes>
+
+    </test>
+
+</suite>
