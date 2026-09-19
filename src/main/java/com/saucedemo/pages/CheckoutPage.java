@@ -25,6 +25,9 @@ public class CheckoutPage {
     private By continueButton =
             By.id("continue");
 
+    private By overviewTitle =
+            By.className("title");
+
     public CheckoutPage(WebDriver driver) {
 
         this.driver = driver;
@@ -78,6 +81,13 @@ public class CheckoutPage {
                         continueButton
                 )
         ).click();
+
+        wait.until(
+                ExpectedConditions.textToBe(
+                        overviewTitle,
+                        "Checkout: Overview"
+                )
+        );
     }
 
     public void enterCheckoutInformation(

@@ -35,7 +35,7 @@ public class BaseTest {
         try {
 
             // Give the browser a short time to finish rendering
-            Thread.sleep(500);
+            Thread.sleep(1500);
 
             TakesScreenshot screenshot =
                     (TakesScreenshot) driver;

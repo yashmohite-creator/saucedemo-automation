@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -25,9 +26,6 @@ public class CartPage {
     private By removeBackpackButton =
             By.id("remove-sauce-labs-backpack");
 
-    private By firstNameField =
-            By.id("first-name");
-
     public CartPage(WebDriver driver) {
 
         this.driver = driver;
@@ -40,64 +38,47 @@ public class CartPage {
 
     public String getBackpackName() {
 
-        return wait.until(
-                ExpectedConditions.visibilityOfElementLocated(
-                        backpackItem
-                )
-        ).getText();
+        return wait.until(driver -> {
+
+            try {
+
+                WebElement element =
+                        driver.findElement(backpackItem);
+
+                if (element.isDisplayed()) {
+                    return element.getText();
+                }
+
+            } catch (StaleElementReferenceException e) {
+
+                return null;
+            }
+
+            return null;
+        });
     }
 
     public void clickCheckout() {
 
-        WebElement checkout =
-                wait.until(
-                        ExpectedConditions.elementToBeClickable(
-                                checkoutButton
-                        )
-                );
+        wait.until(
+                ExpectedConditions.visibilityOfElementLocated(
+                        checkoutButton
+                )
+        );
 
-        try {
+        WebElement checkoutButtonElement =
+                driver.findElement(checkoutButton);
 
-            checkout.click();
+        ((JavascriptExecutor) driver).executeScript(
+                "arguments[0].click();",
+                checkoutButtonElement
+        );
 
-        } catch (Exception e) {
-
-            JavascriptExecutor js =
-                    (JavascriptExecutor) driver;
-
-            js.executeScript(
-                    "arguments[0].click();",
-                    checkout
-            );
-        }
-
-        try {
-
-            wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(
-                            firstNameField
-                    )
-            );
-
-        } catch (Exception e) {
-
-            JavascriptExecutor js =
-                    (JavascriptExecutor) driver;
-
-            WebElement checkoutAgain =
-                    driver.findElement(checkoutButton);
-
-            js.executeScript(
-                    "arguments[0].click();",
-                    checkoutAgain
-            );
-
-            wait.until(
-                    ExpectedConditions.visibilityOfElementLocated(
-                            firstNameField
-                    )
-            );
-        }
+        wait.until(
+                ExpectedConditions.urlContains(
+                        "checkout-step-one.html"
+                )
+        );
     }
 
     public void removeBackpack() {
@@ -109,10 +90,7 @@ public class CartPage {
                         )
                 );
 
-        JavascriptExecutor js =
-                (JavascriptExecutor) driver;
-
-        js.executeScript(
+        ((JavascriptExecutor) driver).executeScript(
                 "arguments[0].click();",
                 removeButton
         );
@@ -125,8 +103,14 @@ public class CartPage {
 
         for (WebElement item : items) {
 
-            if (item.isDisplayed()) {
-                return true;
+            try {
+
+                if (item.isDisplayed()) {
+                    return true;
+                }
+
+            } catch (StaleElementReferenceException e) {
+                // Continue checking
             }
         }
 
