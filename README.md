@@ -402,3 +402,32 @@ Current Status: Core UI Automation Completed
 The main SauceDemo user flows are automated and the current test suite is passing successfully.
 
 Future enhancements such as API testing, SQL validation, and CI/CD automation are planned.
+
+• API Testing — Postman
+
+API testing was performed using Postman with JSONPlaceholder as a public practice API.
+
+API test scenarios:
+
+• GET — Retrieve a single post
+• POST — Create a new post
+• PUT — Update an existing post
+• DELETE — Delete a post
+
+API validations:
+
+• HTTP status code validation
+• Response field validation
+• Response data validation
+• Automated Postman assertions
+• Collection Runner execution
+
+API Test Execution:
+
+• Total API Test Cases: 4
+• Passed: 4
+• Failed: 0
+• Blocked: 0
+
+API documentation:
+• api-testing/API-Test-Cases.md
