@@ -431,3 +431,23 @@ API Test Execution:
 
 API documentation:
 • api-testing/API-Test-Cases.md
+
+• SQL Database Testing — MySQL + JDBC
+
+Database testing was implemented using MySQL and JDBC.
+
+Database validations:
+
+• Product count validation
+• Product price validation
+• Product stock validation
+
+Automated SQL test cases:
+• Verify total product count
+• Verify Sauce Labs Backpack price
+• Verify Sauce Labs Backpack stock
+
+Test execution:
+• Total database test cases: 3
+• Passed: 3
+• Failed: 0
