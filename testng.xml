@@ -19,13 +19,13 @@
 
             <class name="com.saucedemo.tests.CartTest"/>
 
-            <class name="com.saucedemo.tests.CheckoutTest"/>
-
             <class name="com.saucedemo.tests.CompleteCheckoutTest"/>
 
             <class name="com.saucedemo.tests.CartRemoveTest"/>
 
             <class name="com.saucedemo.tests.InventorySortTest"/>
+            
+            <class name="com.saucedemo.tests.DatabaseTest"/>
 
         </classes>
 
